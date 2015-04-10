@@ -46,7 +46,7 @@ AndroidManifest.xml
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="Your Application API key" />
+            android:value="Android 애플리케이션용 키" />
         <activity
             android:name=".AutoComplete"
             android:label="@string/title_activity_auto_complete" >
@@ -56,3 +56,9 @@ AndroidManifest.xml
             </intent-filter>
         </activity>
     </application>
+
+AutoComplete.class
+
+    private static final String API_KEY = "브라우저 애플리케이션용 키";
+    
+    직접 입력해도 가능하지만 편리하게 사용하기위해 정의해줍니다.
