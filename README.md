@@ -62,3 +62,8 @@ AutoComplete.class
     private static final String API_KEY = "브라우저 애플리케이션용 키";
 
 직접 입력해도 괜찮지만 편의정을 위해 입력해놓고 사용하는걸 추천합니다.
+
+# Result Screen
+
+![ScreenShot](http://sangcomz.cafe24.com/eximg/atuo1.png)
+![ScreenShot](http://sangcomz.cafe24.com/eximg/atuo2.png)
