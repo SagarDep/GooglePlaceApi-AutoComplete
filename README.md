@@ -70,10 +70,12 @@ AutoComplete.class
         ArrayList<AutoCompleteBean> resultList = null;
         HttpURLConnection conn = null;
         StringBuilder jsonResults = new StringBuilder();
+        
         try {
             StringBuilder sb = new StringBuilder(PLACES_API_BASE + TYPE_AUTOCOMPLETE + OUT_JSON);
             sb.append("?input=" + URLEncoder.encode(input, "utf8"));
             sb.append("&sensor=true&key=" + API_KEY);
+            // 빌더로 url 생성
             
             URL url = new URL(sb.toString());
             conn = (HttpURLConnection) url.openConnection();
