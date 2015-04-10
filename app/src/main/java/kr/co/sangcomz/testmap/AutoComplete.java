@@ -53,6 +53,14 @@ public class AutoComplete extends ActionBarActivity implements LocationListener 
     double latitude = 0;
     double longitude = 0;
 
+    private static final String LOG_TAG = "ExampleApp";
+    private static final String PLACES_API_BASE = "https://maps.googleapis.com/maps/api/place";
+    private static final String TYPE_AUTOCOMPLETE = "/autocomplete";
+    private static final String TYPE_SEARCH = "/search";
+    private static final String TYPE_DETAILS = "/details";
+    private static final String OUT_JSON = "/json";
+    private static final String API_KEY = "AIzaSyA65-eqSvIefv4lY3vARmN4fwVc1d4lPaE";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,16 +101,6 @@ public class AutoComplete extends ActionBarActivity implements LocationListener 
             onLocationChanged(location);
         }
         locationManager.requestLocationUpdates(bestProvider, 20000, 0, this);
-
-
-//        Button btn = (Button)findViewById(R.id.btn);
-//        btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(AutoComplete.this, GooglePlacesActivity.class);
-//                startActivity(i);
-//            }
-//        });
 
     }
 
@@ -198,17 +196,6 @@ public class AutoComplete extends ActionBarActivity implements LocationListener 
             return filter;
         }
     }
-
-    private static final String LOG_TAG = "ExampleApp";
-
-    private static final String PLACES_API_BASE = "https://maps.googleapis.com/maps/api/place";
-    private static final String TYPE_AUTOCOMPLETE = "/autocomplete";
-    private static final String TYPE_SEARCH = "/search";
-    private static final String TYPE_DETAILS = "/details";
-    private static final String OUT_JSON = "/json";
-
-    private static final String API_KEY = "AIzaSyA65-eqSvIefv4lY3vARmN4fwVc1d4lPaE";
-
     private ArrayList<AutoCompleteBean> autocomplete(String input) {
 
         ArrayList<AutoCompleteBean> resultList = null;
@@ -311,26 +298,12 @@ public class AutoComplete extends ActionBarActivity implements LocationListener 
             JSONObject jsonObjGemmetry = jsonObjResult.getJSONObject("geometry");
             JSONObject jsonObjLocation = jsonObjGemmetry.getJSONObject("location");
 
-
             System.out.println("jsonObj.toString() :::: " + jsonObj.toString());
-//            System.out.println("장소는 ::: " + description +"위도 경도는 ????" +jsonObjLocation.toString());
-//            JSONArray predsJsonArray = jsonObjLocation.getJSONArray("location");
             System.out.println("jsonObjLocation.toString() :::: " + jsonObjLocation.toString());
 
             resultList = new ArrayList<Double>(2);
             resultList.add(jsonObjLocation.getDouble("lat"));
             resultList.add(jsonObjLocation.getDouble("lng"));
-
-//            setLocation(jsonObjLocation.getDouble("lat"), jsonObjLocation.getDouble("lng"));
-
-            // Extract the Place descriptions from the results
-//            resultList = new ArrayList<String>(jsonObjLocation.length());
-//            for (int i = 0; i < jsonObjLocation.length(); i++) {
-////                resultList.add(predsJsonArray.getJSONObject(i).getString("description"));
-////                resultList.add(new AutoCompleteBean(predsJsonArray.getJSONObject(i).getString("description"), predsJsonArray.getJSONObject(i).getString("reference")));
-////                resultList.add(predsJsonArray.getJSONObject(i).getString("geometry"));
-////                System.out.println("지오메트리 :::: " + predsJsonArray.getJSONObject(i).getString("geometry"));
-//            }
         } catch (JSONException e) {
             Log.e(LOG_TAG, "Cannot process JSON results", e);
         }
