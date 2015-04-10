@@ -74,6 +74,7 @@ private ArrayList<AutoCompleteBean> autocomplete(String input) {
             StringBuilder sb = new StringBuilder(PLACES_API_BASE + TYPE_AUTOCOMPLETE + OUT_JSON);
             sb.append("?input=" + URLEncoder.encode(input, "utf8"));
             sb.append("&sensor=true&key=" + API_KEY);
+            
             URL url = new URL(sb.toString());
             conn = (HttpURLConnection) url.openConnection();
             InputStreamReader in = new InputStreamReader(conn.getInputStream());
