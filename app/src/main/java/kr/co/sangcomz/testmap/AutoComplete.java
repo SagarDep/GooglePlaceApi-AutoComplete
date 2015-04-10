@@ -89,7 +89,6 @@ public class AutoComplete extends ActionBarActivity implements LocationListener 
             }
         });
 
-
         SupportMapFragment fragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.googleMap);
         googleMap = fragment.getMap();
         googleMap.setMyLocationEnabled(true);
@@ -114,7 +113,6 @@ public class AutoComplete extends ActionBarActivity implements LocationListener 
         MarkerOptions marker = new MarkerOptions().position(latLng).snippet("클릭하시면 위치가 선택됩니다.");
 
         marker.title(getAddress(latLng.latitude, latLng.longitude));
-//        marker.position(latLng);
 
         googleMap.clear();
         googleMap.addMarker(marker);
@@ -127,7 +125,6 @@ public class AutoComplete extends ActionBarActivity implements LocationListener 
         LatLng latLng = new LatLng(latitude, longitude);
         System.out.println("latitude :::: " + latitude + " longitude :::: " + longitude);
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-//        googleMap.animateCamera(CameraUpdateFactory.zoomTo(12));
     }
 
     @Override
@@ -199,7 +196,6 @@ public class AutoComplete extends ActionBarActivity implements LocationListener 
     private ArrayList<AutoCompleteBean> autocomplete(String input) {
 
         ArrayList<AutoCompleteBean> resultList = null;
-        AutoCompleteBean autoCompleteBean;
 
         HttpURLConnection conn = null;
         StringBuilder jsonResults = new StringBuilder();
@@ -207,7 +203,6 @@ public class AutoComplete extends ActionBarActivity implements LocationListener 
             StringBuilder sb = new StringBuilder(PLACES_API_BASE + TYPE_AUTOCOMPLETE + OUT_JSON);
             sb.append("?input=" + URLEncoder.encode(input, "utf8"));
             sb.append("&sensor=true&key=" + API_KEY);
-//            sb.append("&components=country:kr");
 
             URL url = new URL(sb.toString());
             conn = (HttpURLConnection) url.openConnection();
@@ -234,17 +229,12 @@ public class AutoComplete extends ActionBarActivity implements LocationListener 
         try {
             // Create a JSON object hierarchy from the results
             JSONObject jsonObj = new JSONObject(jsonResults.toString());
-
             JSONArray predsJsonArray = jsonObj.getJSONArray("predictions");
-//            System.out.println(predsJsonArray.length());
-//            System.out.println("jsonObj.toString() :::: " + jsonObj.toString());
+
             // Extract the Place descriptions from the results
             resultList = new ArrayList<AutoCompleteBean>(predsJsonArray.length());
             for (int i = 0; i < predsJsonArray.length(); i++) {
-//                resultList.add(predsJsonArray.getJSONObject(i).getString("description"));
                 resultList.add(new AutoCompleteBean(predsJsonArray.getJSONObject(i).getString("description"), predsJsonArray.getJSONObject(i).getString("reference")));
-//                Details(predsJsonArray.getJSONObject(i).getString("description"), predsJsonArray.getJSONObject(i).getString("reference"));
-//                resultList.add(predsJsonArray.getJSONObject(i).getString("reference"));
             }
         } catch (JSONException e) {
             Log.e(LOG_TAG, "Cannot process JSON results", e);
@@ -256,19 +246,13 @@ public class AutoComplete extends ActionBarActivity implements LocationListener 
     private ArrayList<Double> Details(String description, String reference ) {
 
         ArrayList<Double> resultList = null;
-
         HttpURLConnection conn = null;
         StringBuilder jsonResults = new StringBuilder();
-
-        //    https://maps.googleapis.com/maps/api/place/details/json
-        // ?reference=CmRYAAAAciqGsTRX1mXRvuXSH2ErwW-jCINE1aLiwP64MCWDN5vkXvXoQGPKldMfmdGyqWSpm7BEYCgDm-iv7Kc2PF7QA7brMAwBbAcqMr5i1f4PwTpaovIZjysCEZTry8Ez30wpEhCNCXpynextCld2EBsDkRKsGhSLayuRyFsex6JA6NPh9dyupoTH3g
-        // &key=AddYourOwnKeyHere
 
         try {
             StringBuilder sb = new StringBuilder(PLACES_API_BASE + TYPE_DETAILS + OUT_JSON);
             sb.append("?reference=" + URLEncoder.encode(reference, "utf8"));
             sb.append("&key=" + API_KEY);
-//            sb.append("&components=country:kr");
 
             URL url = new URL(sb.toString());
             conn = (HttpURLConnection) url.openConnection();
