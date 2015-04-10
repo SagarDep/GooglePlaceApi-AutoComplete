@@ -17,12 +17,19 @@ API 및 인증에서 Google Maps Android API와 Places API를 사용으로 합�
     <permission
         android:name="com.javapapers.android.googleplacesdetail.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
+        
     <uses-permission android:name="com.javapapers.android.googleplacesdetail.permission.MAPS_RECEIVE" />
+    
     <uses-permission android:name="android.permission.INTERNET" />
+    
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     
 # Add your API KEY
