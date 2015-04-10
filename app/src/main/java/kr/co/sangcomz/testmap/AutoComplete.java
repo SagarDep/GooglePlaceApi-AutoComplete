@@ -59,7 +59,7 @@ public class AutoComplete extends ActionBarActivity implements LocationListener 
     private static final String TYPE_SEARCH = "/search";
     private static final String TYPE_DETAILS = "/details";
     private static final String OUT_JSON = "/json";
-    private static final String API_KEY = "AIzaSyA65-eqSvIefv4lY3vARmN4fwVc1d4lPaE";
+    private static final String API_KEY = "YOUR API KEY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
