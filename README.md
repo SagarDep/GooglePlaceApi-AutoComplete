@@ -65,6 +65,10 @@ AutoComplete.class
 
 # Autocomplete
 
+    private static final String PLACES_API_BASE = "https://maps.googleapis.com/maps/api/place";
+    private static final String TYPE_AUTOCOMPLETE = "/autocomplete";
+    private static final String OUT_JSON = "/json";
+    private static final String API_KEY = "Your Api Key";
     private ArrayList<AutoCompleteBean> autocomplete(String input) {
     
         ArrayList<AutoCompleteBean> resultList = null;
@@ -114,6 +118,10 @@ AutoComplete.class
     
 # Get Detail Info
 
+    private static final String PLACES_API_BASE = "https://maps.googleapis.com/maps/api/place";
+    private static final String TYPE_DETAILS = "/details";
+    private static final String OUT_JSON = "/json";
+    private static final String API_KEY = "Your Api Key";
     private ArrayList<Double> Details(String description, String reference ) {
 
         ArrayList<Double> resultList = null;
