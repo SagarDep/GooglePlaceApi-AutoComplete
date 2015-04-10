@@ -59,7 +59,7 @@ public class AutoComplete extends ActionBarActivity implements LocationListener 
     private static final String TYPE_SEARCH = "/search";
     private static final String TYPE_DETAILS = "/details";
     private static final String OUT_JSON = "/json";
-    private static final String API_KEY = "YOUR API KEY";
+    private static final String API_KEY = "AIzaSyA65-eqSvIefv4lY3vARmN4fwVc1d4lPaE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,6 +141,7 @@ public class AutoComplete extends ActionBarActivity implements LocationListener 
     public void onProviderDisabled(String provider) {
 
     }
+
 
     private class PlacesAutoCompleteAdapter extends ArrayAdapter<String> implements Filterable {
 //        private ArrayList<AutoCompleteBean> resultList;
