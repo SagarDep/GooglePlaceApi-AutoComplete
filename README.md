@@ -35,6 +35,7 @@ API 및 인증에서 Google Maps Android API와 Places API를 사용으로 합�
     
 # Add your API KEY
 AndroidManifest.xml
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -46,13 +47,11 @@ AndroidManifest.xml
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="Your Application API key" />
-
         <activity
             android:name=".AutoComplete"
             android:label="@string/title_activity_auto_complete" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
