@@ -65,5 +65,5 @@ AutoComplete.class
 
 # Result Screen
 
-![ScreenShot](http://sangcomz.cafe24.com/eximg/atuo1.png)
-![ScreenShot](http://sangcomz.cafe24.com/eximg/atuo2.png)
+![ScreenShot](http://sangcomz.cafe24.com/eximg/auto1.png)
+![ScreenShot](http://sangcomz.cafe24.com/eximg/auto2.png)
