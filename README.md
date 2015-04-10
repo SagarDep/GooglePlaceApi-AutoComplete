@@ -63,6 +63,52 @@ AutoComplete.class
 
 직접 입력해도 괜찮지만 편의정을 위해 입력해놓고 사용하는걸 추천합니다.
 
+# Autocomplete
+
+private ArrayList<AutoCompleteBean> autocomplete(String input) {
+
+        ArrayList<AutoCompleteBean> resultList = null;
+        HttpURLConnection conn = null;
+        StringBuilder jsonResults = new StringBuilder();
+        try {
+            StringBuilder sb = new StringBuilder(PLACES_API_BASE + TYPE_AUTOCOMPLETE + OUT_JSON);
+            sb.append("?input=" + URLEncoder.encode(input, "utf8"));
+            sb.append("&sensor=true&key=" + API_KEY);
+            URL url = new URL(sb.toString());
+            conn = (HttpURLConnection) url.openConnection();
+            InputStreamReader in = new InputStreamReader(conn.getInputStream());
+            // Load the results into a StringBuilder
+            int read;
+            char[] buff = new char[1024];
+            while ((read = in.read(buff)) != -1) {
+                jsonResults.append(buff, 0, read);
+            }
+        } catch (MalformedURLException e) {
+            Log.e(LOG_TAG, "Error processing Places API URL", e);
+            return resultList;
+        } catch (IOException e) {
+            Log.e(LOG_TAG, "Error connecting to Places API", e);
+            return resultList;
+        } finally {
+            if (conn != null) {
+                conn.disconnect();
+            }
+        }
+        try {
+            // Create a JSON object hierarchy from the results
+            JSONObject jsonObj = new JSONObject(jsonResults.toString());
+            JSONArray predsJsonArray = jsonObj.getJSONArray("predictions");
+            // Extract the Place descriptions from the results
+            resultList = new ArrayList<AutoCompleteBean>(predsJsonArray.length());
+            for (int i = 0; i < predsJsonArray.length(); i++) {
+                resultList.add(new AutoCompleteBean(predsJsonArray.getJSONObject(i).getString("description"), predsJsonArray.getJSONObject(i).getString("reference")));
+            }
+        } catch (JSONException e) {
+            Log.e(LOG_TAG, "Cannot process JSON results", e);
+        }
+        return resultList;
+    }
+    
 # Result Screen
 
 ![ScreenShot](http://sangcomz.cafe24.com/eximg/auto1.png)  ![ScreenShot](http://sangcomz.cafe24.com/eximg/auto2.png)
