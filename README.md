@@ -112,6 +112,60 @@ AutoComplete.class
         return resultList;
     }
     
+# Get Detail Info
+
+    private ArrayList<Double> Details(String description, String reference ) {
+
+        ArrayList<Double> resultList = null;
+        HttpURLConnection conn = null;
+        StringBuilder jsonResults = new StringBuilder();
+
+        try {
+            StringBuilder sb = new StringBuilder(PLACES_API_BASE + TYPE_DETAILS + OUT_JSON);
+            sb.append("?reference=" + URLEncoder.encode(reference, "utf8"));
+            sb.append("&key=" + API_KEY);
+
+            URL url = new URL(sb.toString());
+            conn = (HttpURLConnection) url.openConnection();
+            InputStreamReader in = new InputStreamReader(conn.getInputStream());
+
+            // Load the results into a StringBuilder
+            int read;
+            char[] buff = new char[1024];
+            while ((read = in.read(buff)) != -1) {
+                jsonResults.append(buff, 0, read);
+            }
+        } catch (MalformedURLException e) {
+            Log.e(LOG_TAG, "Error processing Places API URL", e);
+            return resultList;
+        } catch (IOException e) {
+            Log.e(LOG_TAG, "Error connecting to Places API", e);
+            return resultList;
+        } finally {
+            if (conn != null) {
+                conn.disconnect();
+            }
+        }
+        try {
+            // Create a JSON object hierarchy from the results
+            JSONObject jsonObj = new JSONObject(jsonResults.toString());
+            JSONObject jsonObjResult = jsonObj.getJSONObject("result");
+            JSONObject jsonObjGemmetry = jsonObjResult.getJSONObject("geometry");
+            JSONObject jsonObjLocation = jsonObjGemmetry.getJSONObject("location");
+
+            System.out.println("jsonObj.toString() :::: " + jsonObj.toString());
+            System.out.println("jsonObjLocation.toString() :::: " + jsonObjLocation.toString());
+
+            resultList = new ArrayList<Double>(2);
+            resultList.add(jsonObjLocation.getDouble("lat"));
+            resultList.add(jsonObjLocation.getDouble("lng"));
+        } catch (JSONException e) {
+            Log.e(LOG_TAG, "Cannot process JSON results", e);
+        }
+
+        return resultList;
+    }
+
 # Result Screen
 
 ![ScreenShot](http://sangcomz.cafe24.com/eximg/auto1.png)  ![ScreenShot](http://sangcomz.cafe24.com/eximg/auto2.png)
