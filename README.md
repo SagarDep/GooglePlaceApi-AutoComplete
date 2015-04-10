@@ -61,5 +61,4 @@ AutoComplete.class
 
     private static final String API_KEY = "브라우저 애플리케이션용 키";
     
-    
     직접 입력해도 가능하지만 편리하게 사용하기위해 정의해줍니다.
