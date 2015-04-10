@@ -12,7 +12,19 @@ API 및 인증에서 Google Maps Android API와 Places API를 사용으로 합�
 >Android 애플리케이션용 키는 맵을 띄워주기 위해서 사용합니다.
 
 >브라우저 애플리케이션용 키는 Place API를 위해서 발급받습니다.
+# Add permission
 
+    <permission
+        android:name="com.javapapers.android.googleplacesdetail.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="com.javapapers.android.googleplacesdetail.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    
 # Add your API KEY
 AndroidManifest.xml
     <application
@@ -25,7 +37,7 @@ AndroidManifest.xml
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyAWdt_-IxHCKcNmCCbvHpAu-UMHYCEGpq8" />
+            android:value="Your Application API key" />
 
         <activity
             android:name=".AutoComplete"
