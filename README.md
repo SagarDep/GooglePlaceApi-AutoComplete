@@ -65,7 +65,9 @@ AutoComplete.class
 
 # Autocomplete
 
+
 private ArrayList<AutoCompleteBean> autocomplete(String input) {
+
         ArrayList<AutoCompleteBean> resultList = null;
         HttpURLConnection conn = null;
         StringBuilder jsonResults = new StringBuilder();
